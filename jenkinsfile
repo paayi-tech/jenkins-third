@@ -29,7 +29,7 @@ pipeline
         {
             steps {
 
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AKIAU5PUZRV2MWELC7G7', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
                 
                 {
                
@@ -41,7 +41,7 @@ pipeline
         stage('Terraform Apply') 
         {
             steps {
-                   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AKIAU5PUZRV2MWELC7G7', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
+                   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
 
                    {
                 
@@ -56,7 +56,7 @@ pipeline
         stage('Terraform Destroy') 
         {
             steps {
-                  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AKIAU5PUZRV2MWELC7G7', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+                  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'jenkins', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
                   
                   {
                 
