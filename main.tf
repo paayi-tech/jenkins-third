@@ -1,10 +1,18 @@
 provider "aws" {
    
-    region = "${var.region}"
+    region = "us-east-1"
 }
 
-module "s3" {
-    source = "<path-to-S3-folder>"
-    #bucket name should be unique
-    bucket_name = "<Bucket-name>"       
+resource "aws_s3_bucket" "b" {
+  bucket = "my-paayi-tf-test-bucket"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.b.id
+  acl    = "private"
 }
