@@ -6,7 +6,8 @@ pipeline {
 stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'master', credentialsId: 'jenkins', url: 'https://github.com/paayi-tech/jenkins-third'
+                
+                git credentialsId: 'github-private-key', url: 'https://github.com/paayi-tech/jenkins-third/'
             }
         }
         stage('Terraform Init') {
