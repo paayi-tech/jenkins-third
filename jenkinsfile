@@ -1,45 +1,62 @@
-pipeline {
+pipeline 
+{
     agent any
     tools {
         terraform 'terraform'
-        }
-stages {
-        stage('Git Checkout') {
+          }
+
+    stages {
+       
+        stage('Git Checkout') 
+        {
             steps {
                 
                 git credentialsId: 'github-private-key', url: 'https://github.com/paayi-tech/jenkins-third/'
-            }
+
+                  }
         }
-        stage('Terraform Init') {
-            steps {
-                sh 'terraform init'
-            }
-        }
-        stage('Terraform Plan') {
+       
+        stage('Terraform Init') 
+        {
             steps {
 
-                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+                sh 'terraform init'
+
+                  }
+        }
+
+        stage('Terraform Plan') 
+        {
+            steps {
+
+                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) 
+                {
                
                  sh 'terraform plan'
                 }
                
-            }
-            }
-        stage('Terraform Apply') {
+                  }
+        }
+        stage('Terraform Apply') 
+        {
             steps {
                    withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) 
+                   
                    {
                 
                  sh 'terraform apply --auto-approve'
+
                    }
                 
                 
-                }
-            }
+                   }
+        }
         
-        stage('Terraform Destroy') {
+        stage('Terraform Destroy') 
+        {
             steps {
                   withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) 
+                  
                   {
                 
                  sh 'terraform destroy --auto-approve'
@@ -47,7 +64,7 @@ stages {
                 
                 
                 
-            }
+                  }
         }
     }
 }
